@@ -1,15 +1,18 @@
 //YOUR FIREBASE LINKS
 // Your web app's Firebase configuration
 var firebaseConfig = {
-      apiKey: "AIzaSyAy8IYLFKjNNExM-jqHwwjO-vR9PrwcYCQ",
-      authDomain: "kwiter-update.firebaseapp.com",
-      projectId: "kwiter-update",
-      storageBucket: "kwiter-update.appspot.com",
-      messagingSenderId: "701950471581",
-      appId: "1:701950471581:web:fb79bb3ed507b0cf0b9374"
+      apiKey: "AIzaSyD6ogPiSEyJT6wWDP9LgSyUt-klqs_ljkc",
+      authDomain: "kwitter-975dc.firebaseapp.com",
+      databaseURL: "https://kwitter-975dc-default-rtdb.firebaseio.com",
+      projectId: "kwitter-975dc",
+      storageBucket: "kwitter-975dc.appspot.com",
+      messagingSenderId: "226450566669",
+      appId: "1:226450566669:web:a2e3da315f1d4f5b406f44"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+  
+
 
     user_name=localStorage.getItem("user_name");
     room_name=localStorage.getItem("room_name");
@@ -26,10 +29,33 @@ function getData() { firebase.database().ref("/"+room_name).on('value', function
          firebase_message_id = childKey;
          message_data = childData;
 //Start code
+ console.log(firebase_message_id);
+ console.log(message_data);
+ name=message_data['name'];
+ message=message_data['message'];
+ like=message_data['like'];
+ name_with_tag="<h4>"+name+"<img class='user_tick' src='tick.png'></h4>";
+ message_with_tag="<h4 class='message_h4'>"+ message +"</h4>";
+ like_button="<button class='btn btn-warning' id="+firebase_message_id+" value="+like+" onclick='updatelike(this.id)'>";
+span_with_tag="<span class+'glyphicon-thumbs-up'>like:"+like+"</span></button><hr>";
+row=name_with_tag+message_with_tag+like_button+span_with_tag;
+document.getElementById("output"). innerHTML +=row;
  
 //End code
       } });  }); }
 getData();
+function updateLike(message_id)
+{
+      console.log("clicked on like button -"+ message_id);
+      button_id = message_id;
+      likes= document.getElementById(button_id).value;
+      updated_likes = Number(likes) + 1;
+      console.log(updated_likes);
+
+      firebase.database().ref(room_name).child(message_id).update({
+            like:updated_likes
+      });
+}
 
 
 

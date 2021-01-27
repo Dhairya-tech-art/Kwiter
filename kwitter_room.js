@@ -3,15 +3,17 @@
 
  // Your web app's Firebase configuration
  var firebaseConfig = {
-      apiKey: "AIzaSyAy8IYLFKjNNExM-jqHwwjO-vR9PrwcYCQ",
-      authDomain: "kwiter-update.firebaseapp.com",
-      projectId: "kwiter-update",
-      storageBucket: "kwiter-update.appspot.com",
-      messagingSenderId: "701950471581",
-      appId: "1:701950471581:web:fb79bb3ed507b0cf0b9374"
-    };
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+  apiKey: "AIzaSyD6ogPiSEyJT6wWDP9LgSyUt-klqs_ljkc",
+  authDomain: "kwitter-975dc.firebaseapp.com",
+  databaseURL: "https://kwitter-975dc-default-rtdb.firebaseio.com",
+  projectId: "kwitter-975dc",
+  storageBucket: "kwitter-975dc.appspot.com",
+  messagingSenderId: "226450566669",
+  appId: "1:226450566669:web:a2e3da315f1d4f5b406f44"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
     user_name=localStorage.getItem("user_name");
     document.getElementById("user_name").innerHTML="Welcome"+user_name+ "!";
     
